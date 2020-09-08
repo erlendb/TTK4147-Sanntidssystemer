@@ -1,4 +1,4 @@
-#include <x86intrin.h>
+#include <time.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -6,11 +6,12 @@ void main() {
   int ns_max = 50;
   int histogram[ns_max];
   memset(histogram, 0, sizeof(int)*ns_max);
+  struct timespec t1, t2;
 
   for (int i = 0; i < 10*1000*1000; i++) {
-    int t1 = __rdtsc();
-    int t2 = __rdtsc();
-    int ns = (t2 - t1); // todo: convert to ns
+    clock_gettime(CLOCK_MONOTONIC, &t1);
+    clock_gettime(CLOCK_MONOTONIC, &t2);
+    int ns = (t2.tv_nsec - t1.tv_nsec);
     if (ns >= 0 && ns < ns_max) {
       histogram[ns]++;
     }
