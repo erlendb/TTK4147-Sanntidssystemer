@@ -44,12 +44,12 @@ void busy_wait_gettime(struct timespec t) {
 void busy_wait_times(int usec) {
   struct tms now_tms;
   times(&now_tms);
-  int now = now_tms.tms_utime;
-  int then = now + usec;
+  //int now = now_tms.tms_utime + now_tms.tms_stime;
+  int then = now_tms.tms_utime + now_tms.tms_stime + usec;
   
-  while(then - now < 0) {
-    for(int i = 0; i < 10000; i++) {}
+  while(then > now_tms.tms_utime + now_tms.tms_stime) {
+    for(int i = 0; i < 10; i++) {}
       times(&now_tms);
-      int now = now_tms.tms_utime;
+      //int now = now_tms.tms_utime;
   }
 }

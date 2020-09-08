@@ -19,7 +19,7 @@
 
 int main() {
   struct timespec now, after;
-  int ns_max = 50;
+  int ns_max = 5000;
   int histogram[ns_max];
   memset(histogram, 0, sizeof(int)*ns_max);
 
