@@ -1,3 +1,5 @@
+1a
+
 time ./nanosleep
 real	0m1,001s
 user	0m0,001s
@@ -22,3 +24,20 @@ time ./build/busywait-times
 real	0m0,004s
 user	0m0,003s
 sys	0m0,001s
+
+1b (divide by 10*1000*1000)
+
+time build/latency-rdtsc 
+real	0m0,156s
+user	0m0,151s
+sys	0m0,000s
+
+time build/latency-gettime 
+real	0m0,234s
+user	0m0,230s
+sys	0m0,004s
+
+time build/latency-times
+real	0m5,613s
+user	0m3,067s
+sys	0m2,539s
