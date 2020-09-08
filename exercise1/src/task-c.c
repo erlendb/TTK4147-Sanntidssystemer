@@ -4,19 +4,6 @@
 #include <x86intrin.h>
 #include <string.h>
 
-// int main()
-// {
-//   struct timespec now, after;
-
-//   clock_gettime(CLOCK_MONOTONIC, &now);
-//   sched_yield();
-//   clock_gettime(CLOCK_MONOTONIC, &after);
-
-//   printf("%ldns\n", (after.tv_nsec - now.tv_nsec));
-//   return 0;
-// }
-
-
 int main() {
   struct timespec now, after;
   int ns_max = 5000;
