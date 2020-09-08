@@ -1,4 +1,5 @@
 #include <time.h>
+#include <sys/times.h>
 
 struct timespec timespec_normalized(time_t sec, long nsec) {
     while(nsec >= 1000000000) {
@@ -39,13 +40,16 @@ void busy_wait_gettime(struct timespec t) {
   }
 }
 
-void busy_wait2(struct timespec t) {
-  struct timespec now;
-  clock_gettime(CLOCK_MONOTONIC, &now);
-  struct timespec then = timespec_add(now, t);
+// Busy wait. Input usec is the waiting time in hundredths of seconds.
+void busy_wait_times(int usec) {
+  struct tms now_tms;
+  times(&now_tms);
+  int now = now_tms.tms_utime;
+  int then = now + usec;
   
-  while(timespec_cmp(now, then) < 0) {
+  while(then - now < 0) {
     for(int i = 0; i < 10000; i++) {}
-    clock_gettime(CLOCK_MONOTONIC, &now);
+      times(&now_tms);
+      int now = now_tms.tms_utime;
   }
 }

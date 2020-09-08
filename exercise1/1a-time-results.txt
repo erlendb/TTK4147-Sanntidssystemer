@@ -17,3 +17,8 @@ time ./busywait-gettime
 real	0m1,003s
 user	0m0,995s
 sys	0m0,008s
+
+time ./build/busywait-times
+real	0m0,004s
+user	0m0,003s
+sys	0m0,001s
