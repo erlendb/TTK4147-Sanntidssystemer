@@ -82,16 +82,32 @@ long array_length(Array a){
 }
 
 void array_reserve(Array* a, long capacity){
-// TODO: your code here
+  // Allocate new space
+  Array newArray = array_new(capacity);
+  // Move the existing data
+  while (!array_empty(*a)) {
+    array_insertBack(&newArray, array_front(*a));
+    array_popFront(a);
+  }
+    
+  // Free the old data
+  array_destroy(*a);
+  
+  // Point to new array
+  *a = newArray;
 }
-
 
 // Modifiers
 
 void array_insertBack(Array* a, long stuff){
 // TODO: your code here
+    if (a->capacity == array_length(*a)) {
+      array_reserve(a, a->capacity + 1);
+    }
     a->back++;
     a->data[a->back-1] = stuff;
+    //printf("length %ld\n", array_length(*a));
+    //printf("capacity %ld\n", a->capacity);
 }
 
 

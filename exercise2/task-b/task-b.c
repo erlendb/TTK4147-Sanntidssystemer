@@ -7,12 +7,17 @@ int main (int argc, char *argv[]) {
   Array myArray = array_new(capacity);
   array_print(myArray);
 
-  long data = 10;
+  long data = 1;
   array_insertBack(&myArray, data);
-  array_insertBack(&myArray, data);
-  array_insertBack(&myArray, data);
-  array_insertBack(&myArray, data);
-  array_insertBack(&myArray, data);
+  array_insertBack(&myArray, ++data);
+  array_insertBack(&myArray, ++data);
+  array_insertBack(&myArray, ++data);
+  array_insertBack(&myArray, ++data);
+  array_insertBack(&myArray, ++data);
+  array_insertBack(&myArray, ++data);
+  array_insertBack(&myArray, ++data);
+  array_insertBack(&myArray, ++data);
+  array_insertBack(&myArray, ++data);
   array_print(myArray);
 
   /* RESULTAT
