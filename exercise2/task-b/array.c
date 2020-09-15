@@ -101,13 +101,26 @@ void array_reserve(Array* a, long capacity){
 
 void array_insertBack(Array* a, long stuff){
 // TODO: your code here
+    /*
+    // Task C
     if (a->capacity == array_length(*a)) {
       array_reserve(a, a->capacity + 1);
+      
+      printf("capacity %ld\n", a->capacity);
     }
+    */
+    
+    // Task D
+    float factor = 2;
+    if (a->capacity == array_length(*a)) {
+      array_reserve(a, factor*(a->capacity));
+      
+      printf("capacity %ld\n", a->capacity);
+      printf("new address %p\n", &a);
+    }
+    
     a->back++;
     a->data[a->back-1] = stuff;
-    //printf("length %ld\n", array_length(*a));
-    //printf("capacity %ld\n", a->capacity);
 }
 
 
