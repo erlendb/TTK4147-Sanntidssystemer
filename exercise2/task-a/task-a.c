@@ -22,16 +22,20 @@ int main (int argc, char *argv[]) {
   // TODO:
   // * Open the System Monitor from Dash (aka the ”start menu”), and go to theresources tab. From here you can see the total memory used by the system.  Run the program, andobserve the effects on the memory usage.  Don’t worry if the computer becomes unresponsive, it’sjust old and needs some time.
   // * What happens?
-  // Memory usage increases fast, then the system kills the process.
-  // See screenshot task-a-1.png
+  // Memory usage increases fast, then swap usage increases. PCen henger seg opp. Tar lang tid til alt er allokert.
   //
   // * What is the difference between ”Memory” and ”Swap”?
   // Swap: the virtual memory allocated on the hard drive when the RAM is full
   // Memory: RAM
   //
   // * Now change the shape of the matrix by increasing xdim first to 1000, then 10000, and run theprogram again.  What happens?
+  // 1000: Minnebruk øker raskt til ca 65%. PCen henger ikke. Swap alltid på under 20%
+  // 10000: Minnebruk 20% (????), swap stabilt på under 20%. Veldig raskt. 
+  // 
   // * Run the program with xdim= 10000 again, but this time write zeros to all the memory:
   //    memset(matrix[y], 0, x_dim*sizeof(long));
+  // Oppførselen ligner veldig på x_dim=100. Bruker mye minne, treigt, henger seg opp.
+  // Ender opp med 100% memory og ca 25% swap
 
   // RESULTAT:
   // * Memory = RAM, Swap = "Memory" placed on disk space, while it is not in use
