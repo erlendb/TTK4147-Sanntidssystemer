@@ -2,10 +2,10 @@
 TARGET = output
 
 # compiler flags
-CFLAGS = -g -Wall -fsanitize=address
+CFLAGS = -g -Wall -std=gnu11
 
 # linker flags
-LDFLAGS = -g -fsanitize=address
+LDFLAGS = -g
 
 # list of sources
 SOURCES = $(shell find . -name "*.c")
@@ -19,7 +19,7 @@ OBJECTS = $(SOURCES:.c=.o)
 # link programs
 $(TARGET): $(OBJECTS)
 	gcc $(LDFLAGS) -o $@ $^
-	
+
 # compile
 %.o : %.c
 	gcc $(CFLAGS) -c -o $@ $<
