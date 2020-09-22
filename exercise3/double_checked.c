@@ -7,7 +7,7 @@
 
 static inline void nonOptimizedBusyWait(void){
     for(long i = 0; i < 10000000; i++){
-        // "Memory clobber" - tells the compiler optimizer that all the memory 
+        // "Memory clobber" - tells the compiler optimizer that all the memory
         // is being touched, and that therefore the loop cannot be optimized out
         asm volatile("" ::: "memory");
     }
@@ -53,14 +53,14 @@ struct Singleton* getSingleton(){
 
 
 void* singletonUser(void* args){
-    
+
     nonOptimizedBusyWait();
 
     struct Singleton* s = getSingleton();
-    
-    printf("Got singleton %p:{%lu %lu %lu %lu}\n", 
+
+    printf("Got singleton %p:{%lu %lu %lu %lu}\n",
         (void*)s, s->a, s->b, s->c, s->d);
-    
+
     return NULL;
 }
 
@@ -70,12 +70,12 @@ int main(){
 
     pthread_t threadHandles[50];
     long numThreads = sizeof(threadHandles)/sizeof(*threadHandles);
-    
+
     for(long i = 0; i < numThreads; i++){
         pthread_create(&threadHandles[i], NULL, singletonUser, NULL);
     }
 
     for(long i = 0; i < numThreads; i++){
         pthread_join(threadHandles[i], NULL);
-    }    
+    }
 }

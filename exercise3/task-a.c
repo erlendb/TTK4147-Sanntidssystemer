@@ -3,15 +3,15 @@
 #include <semaphore.h>
 
 long global = 0;
-//sem_t sem;
+sem_t sem;
 
 void* fn(void* args)
 {
   long local = 0;
   for (size_t i = 0; i < 5000000; i++) {
-    //sem_wait(&sem);
+    sem_wait(&sem);
     global++;
-    //sem_post(&sem);
+    sem_post(&sem);
     local++;
   }
   printf("global: %ld\n", global);
@@ -20,7 +20,7 @@ void* fn(void* args)
 }
 
 int main(int argc, char const *argv[]) {
-  //sem_init(&sem, 1, 1);
+  sem_init(&sem, 1, 1);
   pthread_t threadHandle1, threadHandle2;
   pthread_create(&threadHandle1, NULL, fn, NULL);
   pthread_create(&threadHandle2, NULL, fn, NULL);
