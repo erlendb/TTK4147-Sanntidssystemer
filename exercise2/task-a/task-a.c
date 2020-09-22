@@ -8,11 +8,11 @@ int main (int argc, char *argv[]) {
   long x_dim    = 100;
   long y_dim    = xy_size/x_dim;
 
-  long** matrix = malloc(y_dim*sizeof(long*)); 
+  long** matrix = malloc(y_dim*sizeof(long*));
 
   for (long y = 0; y < y_dim; y++){
     matrix[y] = malloc(x_dim*sizeof(long));
-    memset(matrix[y], 0, x_dim*sizeof(long));
+    //memset(matrix[y], 0, x_dim*sizeof(long));
   }
 
   printf("Allocation complete (press any key to continue...)\n");
@@ -30,8 +30,8 @@ int main (int argc, char *argv[]) {
   //
   // * Now change the shape of the matrix by increasing xdim first to 1000, then 10000, and run theprogram again.  What happens?
   // 1000: Minnebruk øker raskt til ca 65%. PCen henger ikke. Swap alltid på under 20%
-  // 10000: Minnebruk 20% (????), swap stabilt på under 20%. Veldig raskt. 
-  // 
+  // 10000: Minnebruk 20% (????), swap stabilt på under 20%. Veldig raskt.
+  //
   // * Run the program with xdim= 10000 again, but this time write zeros to all the memory:
   //    memset(matrix[y], 0, x_dim*sizeof(long));
   // Oppførselen ligner veldig på x_dim=100. Bruker mye minne, treigt, henger seg opp.
