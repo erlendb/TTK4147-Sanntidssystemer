@@ -5,7 +5,7 @@ TARGET = output
 CFLAGS = -g -Wall
 
 # linker flags
-LDFLAGS = -g
+LDFLAGS = -g -pthread -lcomedi -lm
 
 # list of sources
 SOURCES = $(shell find . -name "*.c")
@@ -18,11 +18,11 @@ OBJECTS = $(SOURCES:.c=.o)
 
 # link programs
 $(TARGET): $(OBJECTS)
-	gcc $(LDFLAGS) -g -o $@ $^
+	clang $(LDFLAGS) -g -o $@ $^
 
 # compile
 %.o : %.c
-	gcc $(CFLAGS) -std=gnu11 -g -c -o $@ $<
+	clang $(CFLAGS) -std=gnu11 -g -c -o $@ $<
 
 # cleaning
 clean:

@@ -39,6 +39,7 @@ void* eat2 ()
 void* eat3 ()
 {
   while (1) {
+    
     pthread_mutex_lock(&mtx2);
     //sleep(1);
     pthread_mutex_lock(&mtx3);
