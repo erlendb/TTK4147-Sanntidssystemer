@@ -174,12 +174,12 @@ int main() {
   RT_TASK taskB;
   RT_TASK taskC;
   
-  pthread_t d1, d2, d3, d4, d5, d6, d7, d8, d9, d10;
+ // pthread_t d1, d2, d3, d4, d5, d6, d7, d8, d9, d10;
   
   rt_task_create(&taskA, "taskA", 0, 99, T_CPU(0));
   rt_task_create(&taskB, "taskB", 0, 99, T_CPU(0));
   rt_task_create(&taskC, "taskC", 0, 99, T_CPU(0));
-
+/*
   pthread_create(&d1, NULL, disturbance, NULL);
   pthread_create(&d2, NULL, disturbance, NULL);
   pthread_create(&d3, NULL, disturbance, NULL);
@@ -190,7 +190,7 @@ int main() {
   pthread_create(&d8, NULL, disturbance, NULL);
   pthread_create(&d9, NULL, disturbance, NULL);
   pthread_create(&d10, NULL, disturbance, NULL);
-  
+  */
   /*
   rt_task_start(&taskA, &taskAfunc, NULL);
   rt_task_start(&taskB, &taskBfunc, NULL);
@@ -199,7 +199,7 @@ int main() {
   rt_task_start(&taskA, &taskAperiodic, NULL);
   rt_task_start(&taskB, &taskBperiodic, NULL);
   rt_task_start(&taskC, &taskCperiodic, NULL);
-  
+  /*
   pthread_join(d1, NULL);
   pthread_join(d2, NULL);
   pthread_join(d3, NULL);
@@ -210,7 +210,7 @@ int main() {
   pthread_join(d8, NULL);
   pthread_join(d9, NULL);
   pthread_join(d10, NULL);
-  
+  */
   while (1) {
     sleep(1);
   }

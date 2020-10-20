@@ -109,7 +109,7 @@ void taskAperiodic() {
 void taskBperiodic() {
   unsigned long endTime = rt_timer_read() + duration;
   
-  rt_task_set_periodic(NULL, TM_NOW, 1*10*1000);
+  rt_task_set_periodic(NULL, TM_NOW, 1*10*100000);
   
   while (1) {
     if (!io_read(2)) {
@@ -135,7 +135,7 @@ void taskBperiodic() {
 void taskCperiodic() {
   unsigned long endTime = rt_timer_read() + duration;
   
-  rt_task_set_periodic(NULL, TM_NOW, 1*10*1000);
+  rt_task_set_periodic(NULL, TM_NOW, 1*10*100000);
   
   while (1) {
     if (!io_read(3)) {
