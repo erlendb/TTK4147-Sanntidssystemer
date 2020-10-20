@@ -83,9 +83,7 @@ void taskCfunc() {
 void taskAperiodic() {
   unsigned long endTime = rt_timer_read() + duration;
   
-  struct timespec waketime;
-  clock_gettime(CLOCK_REALTIME, &waketime);
-  struct timespec period = { .tv_sec = 0, .tv_nsec = 1*10*1000 };
+  rt_task_set_periodic(NULL, TM_NOW, 1*10*1000);
   
   while (1) {
     if (!io_read(1)) {
@@ -93,9 +91,6 @@ void taskAperiodic() {
       rt_timer_spin(5000);
       io_write(1,1);
     }
-
-    waketime = timespec_add(waketime, period);
-    clock_nanosleep(CLOCK_REALTIME, TIMER_ABSTIME, &waketime, NULL);
     
     if (rt_timer_read() > endTime) {
       rt_printf("Time expired\n");
@@ -105,15 +100,16 @@ void taskAperiodic() {
       rt_printf("Task failed to yield\n");
       rt_task_delete(NULL);
     }
+    
+    rt_task_wait_period(NULL);
+    
   }
 }
 
 void taskBperiodic() {
   unsigned long endTime = rt_timer_read() + duration;
   
-  struct timespec waketime;
-  clock_gettime(CLOCK_REALTIME, &waketime);
-  struct timespec period = { .tv_sec = 0, .tv_nsec = 1*10*1000 };
+  rt_task_set_periodic(NULL, TM_NOW, 1*10*1000);
   
   while (1) {
     if (!io_read(2)) {
@@ -121,9 +117,6 @@ void taskBperiodic() {
       rt_timer_spin(5000);
       io_write(2,1);
     }
-
-    waketime = timespec_add(waketime, period);
-    clock_nanosleep(CLOCK_REALTIME, TIMER_ABSTIME, &waketime, NULL);
     
     if (rt_timer_read() > endTime) {
       rt_printf("Time expired\n");
@@ -133,15 +126,16 @@ void taskBperiodic() {
       rt_printf("Task failed to yield\n");
       rt_task_delete(NULL);
     }
+    
+    rt_task_wait_period(NULL);
+    
   }
 }
 
 void taskCperiodic() {
   unsigned long endTime = rt_timer_read() + duration;
   
-  struct timespec waketime;
-  clock_gettime(CLOCK_REALTIME, &waketime);
-  struct timespec period = { .tv_sec = 0, .tv_nsec = 1*10*1000 };
+  rt_task_set_periodic(NULL, TM_NOW, 1*10*1000);
   
   while (1) {
     if (!io_read(3)) {
@@ -149,9 +143,6 @@ void taskCperiodic() {
       rt_timer_spin(5000);
       io_write(3,1);
     }
-
-    waketime = timespec_add(waketime, period);
-    clock_nanosleep(CLOCK_REALTIME, TIMER_ABSTIME, &waketime, NULL);
     
     if (rt_timer_read() > endTime) {
       rt_printf("Time expired\n");
@@ -161,6 +152,9 @@ void taskCperiodic() {
       rt_printf("Task failed to yield\n");
       rt_task_delete(NULL);
     }
+    
+    rt_task_wait_period(NULL);
+    
   }
 }
 
